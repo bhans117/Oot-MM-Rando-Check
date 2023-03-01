@@ -1,1 +1,4 @@
-
+.screen-x {
+  height: 70vh;
+  resize: none;
+}

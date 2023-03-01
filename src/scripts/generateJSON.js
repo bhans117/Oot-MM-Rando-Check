@@ -2,6 +2,7 @@ export function generateJSON(text) {
   const groupings = getGroupings(text);
   const generatedJSON = createObjectsFromGroupings(groupings);
   localStorage.setItem('spoiler-log', JSON.stringify(generatedJSON));
+  return generateJSON;
 }
 
 function getGroupings(text) {

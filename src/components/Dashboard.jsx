@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import FileInput from './FileInput';
-import useSWR from 'swr';
-import Location from './Location';
+import ItemsList from './ItemList';
+import LocationList from './LocationList';
+import { ContextSpoilerLog } from '../contextSpoilerLog';
+import TabButton from './TabButton'
+import FullLog from './FullLog';
 
 const Dashboard = () => {
-  const {data, error, isLoading } = useSWR('spoiler-log');
+  const [tab, setTab] = useState('Locations')
+  const logContext = useContext(ContextSpoilerLog)
 
   return (
-    <div className="p-10">
+    <div>
+      <div className='fixed top-0 bg-white w-full border-b-2 px-20 py-3'>
       <FileInput />
-      {data && <><div className='text-xs'>Seed: {data['Seed'].secret}</div>
-      <div className='text-xs font-light'>Version: {data['Version'].secret}</div>
-      <div><div className='font-semibold text-lg my-5'>Locations</div> {Object.values(data['Location List']).filter(value => value.value != null).map((value, i) => 
-        <div key={i}><Location data={value}/></div>
-      )}</div></>}
+      {logContext.getLog() && <>
+        <div className='text-xs'>
+          Seed: {logContext.getLog()['Seed'].secret}
+        </div>
+        <div className='text-xs font-light'>
+          Version: {logContext.getLog()['Version'].secret}
+        </div>
+        <div className='my-5 row-auto space-x-3'>
+        <span 
+            onClick={() => setTab("Locations")}>
+            <TabButton tab={tab}>Locations</TabButton>
+          </span>
+          <span 
+            onClick={() => setTab("Items")}>
+            <TabButton tab={tab}>Items</TabButton>
+          </span>
+          <span 
+            onClick={() => setTab("Full Log")}>
+            <TabButton tab={tab}>Full Log</TabButton>
+          </span>
+        </div>
+      </>}
+      </div>
+
+      {logContext.getLog() && <>
+        <div className='py-10 px-20 h-full mt-40'>
+        {(tab === "Locations") && <LocationList /> }
+        {(tab === "Items") && <ItemsList /> }
+        {(tab === "Full Log") && <FullLog /> }
+        </div>
+      </>}
     </div>
   )
 }

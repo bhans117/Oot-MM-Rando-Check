@@ -3,6 +3,7 @@ import './App.css';
 import useSWR, { SWRConfig } from 'swr'
 import Dashboard from './components/Dashboard';
 import { localStorageFetcher } from './utils/fetchers'
+import { ProviderSpoilerLog } from './contextSpoilerLog'
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         fetcher: localStorageFetcher
       }}
     >
-      <Dashboard />
+      <ProviderSpoilerLog>
+        <Dashboard />
+      </ProviderSpoilerLog>
     </SWRConfig>
   )
 }
