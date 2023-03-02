@@ -8,6 +8,7 @@ const ProviderSpoilerLog = (props) => {
   const {data: localStoreLog, mutate } = useSWR('spoiler-log');
   const {data: fullLog, mutate: mutateFullLog } = useSWR('spoiler-log-txt', fetchFullLog);
   const [log, setLog] = useState(localStoreLog);
+  const [heroLoc, setHeroLoc] = useState();
 
   useEffect(() => {
     setLog(localStoreLog)
@@ -41,8 +42,22 @@ const ProviderSpoilerLog = (props) => {
     return Object.values(log['Location List']).filter(value => value.value != null)
   }
 
+  const getHeroLocations = () => {
+    if (heroLoc) return heroLoc;
+    let spheres = Object.values(log['Spheres']).filter(value => value.value != null);
+    
+    let locations = [];
+    for (let i = 0; i < spheres.length; i++) {
+        let sphere = Object.values(spheres[i]).filter(value => value.value != null);
+        sphere.forEach(loc => {
+          locations.push(loc.value)
+        })
+    }
+    setHeroLoc(locations);
+    return locations;
+  }
+
   const setCheck = (itemData) => {
-    console.log('click')
     let locations =  Object.values(log['Location List']).filter(value => value.value != null);
     for (let i = 0; i < locations.length; i++) {
       Object.values(locations[i]).forEach(locationValue => {
@@ -66,7 +81,8 @@ const ProviderSpoilerLog = (props) => {
     setCheck,
     mutate,
     mutateFullLog,
-    fullLog
+    fullLog,
+    getHeroLocations
   };
 
   return <ContextSpoilerLog.Provider value={data} {...props} />;

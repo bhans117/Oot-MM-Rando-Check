@@ -27,7 +27,6 @@ function createObjectsFromGroupings(groupings) {
   groupings.forEach(group => {
     parentKeys = setKeyValue(group, masterObject, parentKeys);
   });
-  console.log(masterObject);
   return masterObject;
 }
 
