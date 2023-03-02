@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import useSWR, { SWRConfig } from 'swr'
+import { SWRConfig } from 'swr'
 import Dashboard from './components/Dashboard';
 import { localStorageFetcher } from './utils/fetchers'
 import { ProviderSpoilerLog } from './contextSpoilerLog'

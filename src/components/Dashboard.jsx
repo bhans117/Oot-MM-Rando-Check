@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className='fixed top-0 bg-white w-full border-b-2 px-20 py-3'>
+      <div className='fixed top-0 bg-white w-full border-b-2 px-20 py-3 z-50'>
       <FileInput />
       {logContext.getLog() && <>
         <div className='text-xs'>
