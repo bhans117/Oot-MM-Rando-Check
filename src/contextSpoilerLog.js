@@ -12,6 +12,7 @@ const ProviderSpoilerLog = (props) => {
 
   useEffect(() => {
     setLog(localStoreLog)
+    setHeroLoc(null)
   }, [localStoreLog])
 
   const getLog = () => {
