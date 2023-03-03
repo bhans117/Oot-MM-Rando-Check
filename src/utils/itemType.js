@@ -29,6 +29,23 @@ export const itemType = {
     "Recovery Heart (OoT)",
     "Red Rupee (MM)",
     "Red Rupee (OoT)",
-    "Silver Rupee (MM)"
+    "Silver Rupee (MM)",
+    "10 Arrows",
+    "10 Bombs",
+    "20 Bombs",
+    "30 Arrows",
+    "5 Arrows",
+    "5 Bombs",
+    "Blue Rupee",
+    "Gold Rupee",
+    "Heart Container",
+    "Heart Piece",
+    "MM_MILK",
+    "OOT_MILK",
+    "Purple Rupee",
+    "Recovery Heart",
+    "Red Rupee",
+    "SHARED_NUTS_10",
+    "Silver Rupee"
   ]
 }
