@@ -45,6 +45,7 @@ const ProviderSpoilerLog = (props) => {
 
   const getHeroLocations = () => {
     if (heroLoc) return heroLoc;
+    if (!log['Spheres']) return [];
     let spheres = Object.values(log['Spheres']).filter(value => value.value != null);
     
     let locations = [];
