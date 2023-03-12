@@ -40,6 +40,7 @@ const ProviderSpoilerLog = (props) => {
   }
 
   const getLocations = () => {
+    if (!log['Location List']) return [];
     return Object.values(log['Location List']).filter(value => value.value != null)
   }
 
@@ -60,6 +61,7 @@ const ProviderSpoilerLog = (props) => {
   }
 
   const setCheck = (itemData) => {
+    if (!log['Location List']) return;
     let locations =  Object.values(log['Location List']).filter(value => value.value != null);
     for (let i = 0; i < locations.length; i++) {
       Object.values(locations[i]).forEach(locationValue => {
