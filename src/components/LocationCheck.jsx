@@ -31,11 +31,13 @@ const LocationCheck = ({data}) => {
     logContext.getHeroLocations();
   }
 
+  const imgStyle = "w-4 h-4"
+
   return (
-    <div className='text-sm w-fit flex gap-1'>
-      {isHealthUpgrade(data.secret) && <img className="w-5 h-5" src={poh} alt="poh"/>}
-      {isLargeRupee(data.secret) && <img className="w-5 h-5" src={rupee} alt="rupee"/>}
-      {isHero(data.value) && <img className="w-5 h-5" src={triforce} alt="triforce"/>}
+    <div className='text-sm w-fit flex gap-1 items-center'>
+      {isHealthUpgrade(data.secret) && <img className={imgStyle} src={poh} alt="poh"/>}
+      {isLargeRupee(data.secret) && <img className={imgStyle} src={rupee} alt="rupee"/>}
+      {isHero(data.value) && <img className={imgStyle} src={triforce} alt="triforce"/>}
       <div 
       className={`cursor-pointer
         ${data.check && "line-through"} 
