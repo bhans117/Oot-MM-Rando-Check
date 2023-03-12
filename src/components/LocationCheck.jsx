@@ -41,7 +41,7 @@ const LocationCheck = ({data}) => {
       <div 
       className={`cursor-pointer
         ${data.check && "line-through"} 
-        ${isJunk(data.secret) && "text-gray-500"}`
+        ${isJunk(data.secret) && "text-gray-400"}`
       } 
       onClick={() => clickCheck()}>
         {data.value}
