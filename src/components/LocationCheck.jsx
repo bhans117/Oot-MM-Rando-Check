@@ -33,11 +33,12 @@ const LocationCheck = ({data}) => {
 
   const imgStyle = "w-4 h-4"
 
-  return (
+  return (<div className='flex flex-wrap'>
     <div className='text-sm w-fit flex gap-1 items-center'>
       {isHealthUpgrade(data.secret) && <img className={imgStyle} src={poh} alt="poh"/>}
       {isLargeRupee(data.secret) && <img className={imgStyle} src={rupee} alt="rupee"/>}
       {isHero(data.value) && <img className={imgStyle} src={triforce} alt="triforce"/>}
+     
       <div 
       className={`cursor-pointer
         ${data.check && "line-through"} 
@@ -46,9 +47,10 @@ const LocationCheck = ({data}) => {
       onClick={() => clickCheck()}>
         {data.value}
       </div>
-      <div className='font-light'>{data.check && settingsContext.settings['Checked Items'] && ` - ${data.secret}`}</div>
     </div>
-  )
+    <div className='font-light text-xs'>{data.check && settingsContext.settings['Checked Items'] && ` - ${data.secret}`}</div>
+
+  </div>)
 }
 
 export default LocationCheck;
