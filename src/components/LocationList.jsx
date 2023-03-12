@@ -1,16 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Location from './Location';
 import { ContextSpoilerLog } from '../contextSpoilerLog';
-import Switch from '@mui/material/Switch';
+import { ContextDashboardSettings } from '../contextDashboardSettings';
+import DashboardToggle from './DashboardToggle'
 
 const LocationList = () => {
-  const [showCheckedItems, setShowCheckedItems] = useState(false);
-  const [showHero, setHero] = useState(false);
-  const [showJunkHelper, setShowJunkHelper] = useState(false);
+  const settingsContext = useContext(ContextDashboardSettings);
   const logContext = useContext(ContextSpoilerLog);
-  const toggleShowCheckedItems = () => {
-    setShowCheckedItems(!showCheckedItems)
-  }
 
   return (
     <div>
@@ -19,38 +15,38 @@ const LocationList = () => {
           Locations
         </div> 
 
-        <div className='p-2 border-2 w-fit flex items-center cursor-pointer' onClick={toggleShowCheckedItems}>
-              <div className='text-sm'>Checked Items</div>
-              <Switch 
-                size='small'
-                checked={showCheckedItems}
-                onChange={toggleShowCheckedItems}
-                color="primary"
-              />
-        </div>
-        <div className='p-2 border-2 w-fit flex items-center cursor-pointer' onClick={() => setHero(!showHero)}>
-              <div className='text-sm'>Way of Hero</div>
-              <Switch 
-                size='small'
-                checked={showHero}
-                onChange={() => setHero(!showHero)}
-                color="primary"
-              />
-        </div>
-        <div className='p-2 border-2 w-fit flex items-center cursor-pointer' onClick={() => setShowJunkHelper(!showJunkHelper)}>
-              <div className='text-sm'>No Junk</div>
-              <Switch 
-                size='small'
-                checked={showJunkHelper}
-                onChange={() => setShowJunkHelper(!showJunkHelper)}
-                color="primary"
-              />
-        </div>
+        <DashboardToggle 
+          onClick={() => settingsContext.toggleSetting('Checked Items')}
+          toggleState={settingsContext.settings['Checked Items']}
+        >Checked Items</DashboardToggle>
+
+        <DashboardToggle 
+          onClick={() => settingsContext.toggleSetting('Way of Hero')}
+          toggleState={settingsContext.settings['Way of Hero']}
+        >Way of Hero</DashboardToggle>
+
+        <DashboardToggle 
+          onClick={() => settingsContext.toggleSetting('No Junk')}
+          toggleState={settingsContext.settings['No Junk']}
+        >No Junk</DashboardToggle>
+
+        <DashboardToggle 
+          onClick={() => settingsContext.toggleSetting('Health Upgrade')}
+          toggleState={settingsContext.settings['Health Upgrade']}
+        >Health Upgrade</DashboardToggle>
+
+        <DashboardToggle 
+          onClick={() => settingsContext.toggleSetting('Large Rupee')}
+          toggleState={settingsContext.settings['Large Rupee']}
+        >Large Rupees</DashboardToggle>
+
       </div>
 
       {logContext.getLocations() && logContext.getLocations().map((value, i) => 
         <div key={i}>
-          <Location data={value} hero={showHero} junk={showJunkHelper} showCheckedItems={showCheckedItems}/>
+          <Location
+            data={value}
+          />
         </div>
       )}
     </div>

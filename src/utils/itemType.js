@@ -1,5 +1,23 @@
 export const itemType = {
-  junk: [
+  'Health Upgrade': [
+    "Heart Container (MM)",
+    "Heart Container (OoT)",
+    "Heart Piece (MM)",
+    "Heart Container",
+    "Heart Piece",
+    "Piece of Heart (OoT)",
+  ],
+  'Large Rupee': [
+    "Gold Rupee (MM)",
+    "Gold Rupee (OoT)",
+    "Purple Rupee (MM)",
+    "Purple Rupee (OoT)",
+    "Silver Rupee (MM)",
+    "Gold Rupee",
+    "Purple Rupee",
+    "Silver Rupee"
+  ],
+  'Junk': [
     "1 Bombchu (MM)",
     "10 Arrows (OoT)",
     "10 Bombchu (MM)",

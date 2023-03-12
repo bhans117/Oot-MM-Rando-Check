@@ -5,13 +5,15 @@ import LocationList from './LocationList';
 import { ContextSpoilerLog } from '../contextSpoilerLog';
 import TabButton from './TabButton'
 import FullLog from './FullLog';
+import { ProviderDashboardSettings } from '../contextDashboardSettings'
+
 
 const Dashboard = () => {
   const [tab, setTab] = useState('Locations')
   const logContext = useContext(ContextSpoilerLog)
 
   return (
-    <div>
+    <ProviderDashboardSettings>
       <div className='fixed top-0 bg-white w-full border-b-2 px-20 py-3 z-50'>
       <FileInput />
       {logContext.getLog() && <>
@@ -45,7 +47,7 @@ const Dashboard = () => {
         {(tab === "Full Log") && <FullLog /> }
         </div>
       </>}
-    </div>
+    </ProviderDashboardSettings>
   )
 }
 

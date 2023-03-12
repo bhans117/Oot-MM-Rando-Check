@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { ContextSpoilerLog } from '../contextSpoilerLog';
+import { ContextDashboardSettings } from '../contextDashboardSettings';
 
-const ItemCheck = ({data, showLocations, noStrike}) => {
+const ItemCheck = ({data, noStrike}) => {
   const logContext = useContext(ContextSpoilerLog)
+  const settingsContext = useContext(ContextDashboardSettings);
 
 
   const clickCheck = () => {
@@ -11,8 +13,12 @@ const ItemCheck = ({data, showLocations, noStrike}) => {
 
   return (
     <div className='text-sm'>
-        <span className={`cursor-pointer ${data.check && !noStrike && "line-through"}`} onClick={() => clickCheck()}>{data.secret}</span>
-        <span className='font-light'>{data.check && showLocations && ` - ${data.value}`}</span>
+        <span 
+          className={`cursor-pointer 
+            ${data.check && !noStrike && "line-through"}`
+          }   
+          onClick={() => clickCheck()}>{data.secret}</span>
+        <span className='font-light'>{data.check && settingsContext.settings['Show Location'] && ` - ${data.value}`}</span>
     </div>
   )
 }

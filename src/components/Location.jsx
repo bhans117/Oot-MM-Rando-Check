@@ -1,7 +1,7 @@
 import React from 'react';
 import LocationCheck from './LocationCheck';
 
-const Location = ({data, showCheckedItems, hero, junk}) => {
+const Location = ({data}) => {
 
   return (
     <div className='py-2 px-3  border- rounded my-2'>
@@ -9,7 +9,7 @@ const Location = ({data, showCheckedItems, hero, junk}) => {
       <div>{Object.values(data).map((value, i) => 
         <div
           key={i}
-        ><LocationCheck data={value} junk={junk} hero={hero} showCheckedItems={showCheckedItems} /></div>
+        ><LocationCheck data={value} /></div>
       )}</div>
     </div>
   )
