@@ -8,7 +8,7 @@ const Home = () => {
     <div className='text-md font-semibold'>Use Cases:</div>
       <ol className='list-decimal pl-10'>
         <li>Quickly check what item is at a location without having to look at the entire spoiler log.</li>
-        <li>Highlight all the necessary check "Way of Hero"</li>
+        <li>Highlight all the necessary checks: "Way of Hero"</li>
         <li>Highlight checks with junk: typically heart peices and rupees</li>
         <li>Highlight checks with upgrades</li>
         <li>Highlight checks with large rupees: 50 or more.</li>
