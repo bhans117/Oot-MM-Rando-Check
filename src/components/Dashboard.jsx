@@ -1,52 +1,31 @@
-import React, { useContext, useState } from 'react';
-import FileInput from './FileInput';
+import React, { useContext } from 'react';
 import ItemsList from './ItemList';
 import LocationList from './LocationList';
-import { ContextSpoilerLog } from '../contextSpoilerLog';
-import TabButton from './TabButton'
 import FullLog from './FullLog';
 import { ProviderDashboardSettings } from '../contextDashboardSettings'
+import Home from './Home';
+import Heeader from './Heeader';
+import { ContextSpoilerLog } from '../contextSpoilerLog';
 
 
 const Dashboard = () => {
-  const [tab, setTab] = useState('Locations')
-  const logContext = useContext(ContextSpoilerLog)
+  const logContext = useContext(ContextSpoilerLog);
 
   return (
     <ProviderDashboardSettings>
-      <div className='fixed top-0 bg-white w-full border-b-2 px-20 py-3 z-50'>
-      <FileInput />
+      <Heeader tab={logContext.tab} setTab={(tab) => logContext.setTab(tab)} />
+      <div className={`px-20 h-full ${logContext.getLog() ? 'my-64' : 'my-32'}`}>
+      {(logContext.tab === "Home") && <Home /> }
       {logContext.getLog() && <>
-        <div className='text-xs'>
-          Seed: {logContext.getLog()['Seed'].secret}
-        </div>
-        <div className='text-xs font-light'>
-          Version: {logContext.getLog()['Version'].secret}
-        </div>
-        <div className='my-5 row-auto space-x-3'>
-        <span 
-            onClick={() => setTab("Locations")}>
-            <TabButton tab={tab}>Locations</TabButton>
-          </span>
-          <span 
-            onClick={() => setTab("Items")}>
-            <TabButton tab={tab}>Items</TabButton>
-          </span>
-          <span 
-            onClick={() => setTab("Full Log")}>
-            <TabButton tab={tab}>Full Log</TabButton>
-          </span>
-        </div>
+        {(logContext.tab === "Locations") && <LocationList /> }
+        {(logContext.tab === "Items") && <ItemsList /> }
+        {(logContext.tab === "Full Log") && <FullLog /> }
       </>}
-      </div>
 
-      {logContext.getLog() && <>
-        <div className='py-10 px-20 h-full mt-40'>
-        {(tab === "Locations") && <LocationList /> }
-        {(tab === "Items") && <ItemsList /> }
-        {(tab === "Full Log") && <FullLog /> }
-        </div>
-      </>}
+      <a href='https://forms.gle/g8MJqEbnYUEg9Xsv6' target='_blank' rel="noreferrer"  className='fixed bottom-5 right-5 py-2 px-2 rounded-md bg-slate-500 text-white font-semibold text-sm cursor-pointer h-fit w-fit'>
+        Bug Report
+      </a>
+      </div>
     </ProviderDashboardSettings>
   )
 }

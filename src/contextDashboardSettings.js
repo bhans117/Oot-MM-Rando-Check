@@ -4,7 +4,7 @@ import useSWR from 'swr';
 export const ContextDashboardSettings = createContext();
 
 const initialSettings = {
-  'Checked Items': false,
+  'Checked Items': true,
   'Way of Hero': false,
   'No Junk': false,
   'Show Junk': false,

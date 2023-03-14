@@ -9,10 +9,14 @@ const ProviderSpoilerLog = (props) => {
   const {data: fullLog, mutate: mutateFullLog } = useSWR('spoiler-log-txt', fetchFullLog);
   const [log, setLog] = useState(localStoreLog);
   const [heroLoc, setHeroLoc] = useState();
+  const [tab, setTab] = useState('Home')
+
 
   useEffect(() => {
+    console.log('local')
     setLog(localStoreLog)
     setHeroLoc(null)
+    if (localStoreLog) setTab('Locations')
   }, [localStoreLog])
 
   const getLog = () => {
@@ -86,7 +90,9 @@ const ProviderSpoilerLog = (props) => {
     mutate,
     mutateFullLog,
     fullLog,
-    getHeroLocations
+    getHeroLocations,
+    tab,
+    setTab
   };
 
   return <ContextSpoilerLog.Provider value={data} {...props} />;

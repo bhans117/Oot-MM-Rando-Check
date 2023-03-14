@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { generateJSON } from '../scripts/generateJSON';
 import { ContextSpoilerLog } from '../contextSpoilerLog';
 
 
 const FileInput = () => {
   const logContext = useContext(ContextSpoilerLog)
-  const [uploadNew, setUploadNew] = useState(false)
 
 
   const uploadFile = (event) => {
@@ -13,9 +12,8 @@ const FileInput = () => {
     
     if (file) {
       readFileContent(file).then(content => {
-        generateJSON(content);
+        generateJSON(content, file.name.replace(".txt", ""));
         localStorage.setItem('spoiler-log-txt', content);
-        setUploadNew(false);
         logContext.mutate();
         logContext.mutateFullLog();
       }).catch(error => console.log(error))
@@ -32,27 +30,18 @@ const FileInput = () => {
   }
 
   return (
-    <div>
-      {logContext.getLog() && !uploadNew ? 
-      <>
-      <div 
-        className='p-2 my-2 border-2 rounded-lg text-white bg-slate-700 font-semibold w-fit cursor-pointer'
-        onClick={() => setUploadNew(true)}
-        >Restart and upload a new file</div>
-      </>
-      :
-      <div className='p-4 bg-slate-200 border-2'>
-      <span className='font-medium'>Upload Spoiler Log: </span>
+    <>
+      <label className='py-3 px-2 rounded-md bg-green-700 text-white font-bold cursor-pointer h-fit w-fit'
+        htmlFor="input-file">{logContext.getLog() ? "Restart: Upload Spoiler Log" : "Upload Spoiler Log"}</label>
       <input 
+        className="text-sm"
         type="file" 
         id="input-file" 
         accept=".txt" 
         onChange={uploadFile}
-        className="text-sm"
+        hidden
       />
-      </div>
-      }
-    </div>
+    </>
   )
 }
 

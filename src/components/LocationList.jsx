@@ -15,14 +15,25 @@ const LocationList = () => {
   return (
     <div>
       <div className='font-semibold text-lg'>
-        Quest Settings
+        Locations
+      </div>
+      <div className='w-fit'>
+        <DashboardToggle 
+            noBoarder
+            onClick={() => settingsContext.toggleSetting('Checked Items')}
+            toggleState={settingsContext.settings['Checked Items']}
+        >Show items after checked</DashboardToggle>
+      </div>
+
+      <div className='font-medium text-md'>
+        Filters
       </div> 
       <div className='flex-col w-fit my-3 gap-3'>
 
         <DashboardToggle 
           onClick={() => settingsContext.toggleSetting('Way of Hero')}
           toggleState={settingsContext.settings['Way of Hero']}
-        ><img src={triforce} className={imgStyle}/>Show Way of Hero</DashboardToggle>
+        ><img src={triforce} className={imgStyle} alt="triforce"/>Show Way of Hero</DashboardToggle>
 
         <DashboardToggle 
           onClick={() => settingsContext.toggleSetting('No Junk')}
@@ -32,24 +43,13 @@ const LocationList = () => {
         <DashboardToggle 
           onClick={() => settingsContext.toggleSetting('Health Upgrade')}
           toggleState={settingsContext.settings['Health Upgrade']}
-        ><img src={poh} className={imgStyle}/>Show Health Upgrades</DashboardToggle>
+        ><img src={poh} className={imgStyle} alt="poh"/>Show Health Upgrades</DashboardToggle>
 
         <DashboardToggle 
           onClick={() => settingsContext.toggleSetting('Large Rupee')}
           toggleState={settingsContext.settings['Large Rupee']}
-        ><img src={rupee} className={imgStyle}/>Show Large Rupees</DashboardToggle>
+        ><img src={rupee} className={imgStyle} alt="rupee"/>Show Large Rupees</DashboardToggle>
 
-      </div>
-
-      <div className='font-semibold text-lg'>
-        Locations
-      </div>
-      <div className='w-fit'>
-        <DashboardToggle 
-            noBoarder
-            onClick={() => settingsContext.toggleSetting('Checked Items')}
-            toggleState={settingsContext.settings['Checked Items']}
-        >Show items at checked locations</DashboardToggle>
       </div>
 
       {logContext.getLocations() && logContext.getLocations().map((value, i) => 

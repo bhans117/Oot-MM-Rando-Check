@@ -1,6 +1,7 @@
-export function generateJSON(text) {
+export function generateJSON(text, filename) {
   const groupings = getGroupings(text);
   const generatedJSON = createObjectsFromGroupings(groupings);
+  generatedJSON['Name'] = filename;
   localStorage.setItem('spoiler-log', JSON.stringify(generatedJSON));
   return generateJSON;
 }
