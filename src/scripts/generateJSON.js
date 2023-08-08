@@ -26,6 +26,7 @@ function createObjectsFromGroupings(groupings) {
   const masterObject = {}
   let parentKeys = [""];
   groupings.forEach(group => {
+    if(group.includes("Location List")) group = "Location List";
     parentKeys = setKeyValue(group, masterObject, parentKeys);
   });
   return masterObject;

@@ -20,6 +20,7 @@ const ProviderSpoilerLog = (props) => {
   }, [localStoreLog])
 
   const getLog = () => {
+    console.log(log);
     return log;
   }
 

@@ -6,6 +6,7 @@ export const itemType = {
     "Heart Container",
     "Heart Piece",
     "Piece of Heart (OoT)",
+    "Piece of Heart",
   ],
   'Large Rupee': [
     "Gold Rupee (MM)",
@@ -15,7 +16,7 @@ export const itemType = {
     "Silver Rupee (MM)",
     "Gold Rupee",
     "Purple Rupee",
-    "Silver Rupee"
+    "Silver Rupee",
   ],
   'Junk': [
     "1 Bombchu (MM)",
